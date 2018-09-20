@@ -8,9 +8,81 @@ namespace Ships
 {
     class Program
     {
+        private static int drawMenu()
+        {
+            int index = 0;
+            int shipTypeCount = Enum.GetNames(typeof(ShipTypes)).Length;
+            for (int i = 0; i < shipTypeCount; i++)
+            {
+                if (i == index)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine((ShipTypes)i);
+                }
+                else
+                {
+                    Console.WriteLine((ShipTypes)i);
+                }
+                Console.ResetColor();
+            }
+            ConsoleKeyInfo ckey = Console.ReadKey();
+
+            if (ckey.Key == ConsoleKey.DownArrow)
+            {
+                if (index == shipTypeCount - 1) { index = 0; }
+                else { index++; }
+            }
+            else if (ckey.Key == ConsoleKey.UpArrow)
+            {
+                if (index == shipTypeCount - 1) { index = 0; }
+                else { index--; }
+            }
+            else if (ckey.Key == ConsoleKey.Enter)
+            {
+                return index;
+            }
+            else
+            {
+                return index;
+            }
+
+            
+            Console.Clear();
+            return 0;
+
+        }
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
 
+
+            int index = 0;
+            int shipTypeCount = Enum.GetNames(typeof(ShipTypes)).Length;
+            while (true)
+            {
+                int selectedMenuIndex = drawMenu();
+                if (selectedMenuIndex == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("VYBRAL SI MOŽNOST 0");
+                    Console.Read();
+                }
+            }
+
+
+            
+
+
+            foreach (ShipTypes shipType in Enum.GetValues(typeof(ShipTypes)))
+            {
+                Console.WriteLine(shipType);
+            }
+
+
+            Console.WriteLine("Vyberte loď");
+            string playerShip = Console.ReadLine();
             Console.WriteLine("napiste souradnici x");
             int playerx = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("napiste souradnici y");

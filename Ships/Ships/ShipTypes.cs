@@ -8,7 +8,10 @@ namespace Ships
 {
     enum ShipTypes
     {
-        destroyer,
-        cruiser
+        Ponorka,
+        Torpédoborec,
+        Křižník,
+        Bitevní_loď,
+        Letadlová_loď
     }
 }
