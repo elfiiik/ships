@@ -12,9 +12,9 @@ namespace Ships
         {
 
             Console.WriteLine("napiste souradnici x");
-            int playerx = Console.Read();
+            int playerx = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("napiste souradnici y");
-            int playery = Console.Read();
+            int playery = Convert.ToInt32(Console.ReadLine());
 
             List<Point> pole = new List<Point>();
             bool radek1;
@@ -43,7 +43,16 @@ namespace Ships
             foreach (Point point in pole)
             {
                 //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
-                Console.Write("*");
+                
+                if (playerx == point.x && playery == point.y)
+                {
+                    Console.Write("+");
+                }
+                else
+                {
+                    Console.Write("*");
+                }
+
                 if (point.radek)
                 {
                     Console.WriteLine();
