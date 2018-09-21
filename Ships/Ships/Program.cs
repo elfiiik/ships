@@ -8,9 +8,18 @@ namespace Ships
 {
     class Program
     {
+        private static int index = 0;
+        private static void createShips()
+        {
+            
+
+            
+
+
+        }
         private static int drawMenu()
         {
-            int index = 0;
+            //int index = 0;
             int shipTypeCount = Enum.GetNames(typeof(ShipTypes)).Length;
             for (int i = 0; i < shipTypeCount; i++)
             {
@@ -31,13 +40,25 @@ namespace Ships
 
             if (ckey.Key == ConsoleKey.DownArrow)
             {
-                if (index == shipTypeCount - 1) { index = 0; }
-                else { index++; }
+                if (index == shipTypeCount - 1)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index++;
+                }
             }
             else if (ckey.Key == ConsoleKey.UpArrow)
             {
-                if (index == shipTypeCount - 1) { index = 0; }
-                else { index--; }
+                if (index <= 0)
+                {
+                    index = shipTypeCount-1;
+                }
+                else
+                {
+                    index--;
+                }
             }
             else if (ckey.Key == ConsoleKey.Enter)
             {
@@ -45,43 +66,121 @@ namespace Ships
             }
             else
             {
-                return index;
+                return 0;
             }
 
             
             Console.Clear();
-            return 0;
+            return 100;
 
         }
         static void Main(string[] args)
         {
+            
             Console.CursorVisible = false;
 
+            int ponorky = 4;
+            int ponorkyCount = 4;
+            int torpedoborce = 0;
+            int krizniky = 0;
+            int bitevnilode = 0;
 
-            int index = 0;
-            int shipTypeCount = Enum.GetNames(typeof(ShipTypes)).Length;
-            while (true)
+            int pocetlodi = ponorkyCount + torpedoborce + krizniky + bitevnilode;
+
+            List<Ship> ship = new List<Ship>();
+
+            for (int i = 0; i < ponorky; i++)
             {
+                /*ship.Add(new Ship
+                {
+                    type = "Ponorka",
+                    x = 2
+                });*/
+            }
+
+
+            while (pocetlodi > 0)
+            {
+                pocetlodi = ponorkyCount + torpedoborce + krizniky + bitevnilode;
+                Console.WriteLine(pocetlodi);
                 int selectedMenuIndex = drawMenu();
-                if (selectedMenuIndex == 0)
+                if (selectedMenuIndex == 100)
+                {
+
+                }
+                else if (selectedMenuIndex == 0)
+                {
+                    if (ponorkyCount > 0)
+                    {
+                        for (int i = 0; i < ponorky; i++)
+                        {
+                            bool add = true;
+                            Console.Clear();
+
+                            Console.WriteLine($"Rozmisěte {ponorkyCount} ponorek");
+                            Console.WriteLine("napiste souradnici x");
+                            int shipx = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("napiste souradnici y");
+                            int shipy = Convert.ToInt32(Console.ReadLine());
+
+                            if (ship.Count() != 0)
+                            {
+                                foreach (Ship lod in ship)
+                                {
+                                    /*Console.WriteLine($"x lode = {lod.x}, y lode = {lod.y}");
+                                    Console.WriteLine($"x inputu = {shipx}, y inputu = {shipy}");*/
+                                    if (shipx == lod.x && shipy == lod.y)
+                                    {
+                                        add = false;
+                                        Console.WriteLine("Pozice je obsazená");
+                                        i--;
+                                    }
+                                }
+                            }
+
+
+
+                            if (add == true)
+                            {
+                                ship.Add(new Ship
+                                {
+                                    x = shipx,
+                                    y = shipy,
+                                    type = "Ponorka"
+                                });
+                                ponorkyCount--;
+                            }
+
+                            Console.ReadLine();
+
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Došli ti ponorky");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                    
+                }
+                else if (selectedMenuIndex == 1)
                 {
                     Console.Clear();
-                    Console.WriteLine("VYBRAL SI MOŽNOST 0");
+                    Console.WriteLine("VYBRAL SI MOŽNOST 1");
                     Console.Read();
                 }
             }
 
 
-            
 
 
-            foreach (ShipTypes shipType in Enum.GetValues(typeof(ShipTypes)))
+
+            /*foreach (ShipTypes shipType in Enum.GetValues(typeof(ShipTypes)))
             {
                 Console.WriteLine(shipType);
-            }
+            }*/
 
-
-            Console.WriteLine("Vyberte loď");
             string playerShip = Console.ReadLine();
             Console.WriteLine("napiste souradnici x");
             int playerx = Convert.ToInt32(Console.ReadLine());

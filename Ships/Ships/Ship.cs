@@ -9,9 +9,9 @@ namespace Ships
     class Ship
     {
 
-        private int x;
-        private int y;
-        private string type;
+        public int x;
+        public int y;
+        public string type;
 
     }
 }
