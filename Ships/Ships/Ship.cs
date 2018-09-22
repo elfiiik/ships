@@ -8,6 +8,7 @@ namespace Ships
 {
     class Ship
     {
+        public List<Ship> posX = new List<Ship>();
 
         public int x;
         public int y;

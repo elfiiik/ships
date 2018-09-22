@@ -11,8 +11,6 @@ namespace Ships
         private static int index = 0;
         private static int width = 20;
         private static int height = 20;
-        /*private static int naviX = 0;
-        private static int naviY = 0;*/
         private static void map()
         {
 
@@ -93,6 +91,15 @@ namespace Ships
 
             int naviX = 0;
             int naviY = 0;
+            List<int> posX = new List<int>()
+            {
+                naviX, naviX+1
+            };
+            List<int> posY = new List<int>()
+            {
+                naviY
+            };
+
             int ponorky = 0;
             int ponorkyCount = 0;
             int torpedoborce = 0;
@@ -217,7 +224,7 @@ namespace Ships
 
             while (true)
             {
-
+                bool tryAdd = false;
                 ConsoleKeyInfo navigation = Console.ReadKey();
                 
                 if (navigation.Key == ConsoleKey.RightArrow)
@@ -238,13 +245,7 @@ namespace Ships
                 }
                 else if (navigation.Key == ConsoleKey.Enter)
                 {
-                    foreach (Ship lod in ship)
-                    {
-                        if(lod.x != naviX && lod.x != naviY)
-                        {
-
-                        }
-                    }
+                    tryAdd = true;
                 }
                 Console.Clear();
                 Console.WriteLine(naviX);
@@ -253,17 +254,29 @@ namespace Ships
 
                 foreach (Point point in pole)
                 {
+                    if (tryAdd)
+                    {
+                        if (point.ship == false && point.x == naviX && point.y == naviY)
+                        {
+                            point.ship = true;
+                        }
+                    }
                     //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
 
                     /*if (playerx == point.x && playery == point.y)
                     {
                         Console.Write("+");
                     }*/
-                    if (point.x == naviX && point.y == naviY)
+                    if (point.x == List<int> posX && point.y == naviY)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("*");
-                        
+
+                    }
+                    else if (point.ship)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("*");
                     }
                     else
                     {
