@@ -9,6 +9,13 @@ namespace Ships
     class Program
     {
         private static int index = 0;
+        private static int width = 20;
+        private static int height = 20;
+        private static void map()
+        {
+
+        }
+
         private static void createShips()
         {
             
@@ -17,6 +24,7 @@ namespace Ships
 
 
         }
+
         private static int drawMenu()
         {
             //int index = 0;
@@ -76,11 +84,11 @@ namespace Ships
         }
         static void Main(string[] args)
         {
-            
+
             Console.CursorVisible = false;
 
-            int ponorky = 4;
-            int ponorkyCount = 4;
+            int ponorky = 0;
+            int ponorkyCount = 0;
             int torpedoborce = 0;
             int krizniky = 0;
             int bitevnilode = 0;
@@ -138,8 +146,6 @@ namespace Ships
                                 }
                             }
 
-
-
                             if (add == true)
                             {
                                 ship.Add(new Ship
@@ -152,7 +158,6 @@ namespace Ships
                             }
 
                             Console.ReadLine();
-
                         }
                     }
                     else
@@ -162,8 +167,8 @@ namespace Ships
                         Console.ReadLine();
                         Console.Clear();
                     }
-                    
                 }
+
                 else if (selectedMenuIndex == 1)
                 {
                     Console.Clear();
@@ -181,7 +186,6 @@ namespace Ships
                 Console.WriteLine(shipType);
             }*/
 
-            string playerShip = Console.ReadLine();
             Console.WriteLine("napiste souradnici x");
             int playerx = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("napiste souradnici y");
@@ -189,12 +193,12 @@ namespace Ships
 
             List<Point> pole = new List<Point>();
             bool radek1;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < width; i++)
             {
-                
-                for (int j = 0; j < 10; j++)
+
+                for (int j = 0; j < height; j++)
                 {
-                    if (j == 9)
+                    if (j == width - 1)
                     {
                         radek1 = true;
                     }
@@ -211,10 +215,10 @@ namespace Ships
                 }
             }
 
-            foreach (Point point in pole)
+
+
+            /*foreach (Point point in pole)
             {
-                //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
-                
                 if (playerx == point.x && playery == point.y)
                 {
                     Console.Write("+");
@@ -228,9 +232,52 @@ namespace Ships
                 {
                     Console.WriteLine();
                 }
-            }
+            }*/
 
-            List<Ship> ships = new List<Ship>();
+
+
+                while (true)
+                {
+                    ConsoleKeyInfo navigation = Console.ReadKey();
+                    int naviX = 0;
+                    int naviY = 0;
+                    if (navigation.Key == ConsoleKey.DownArrow)
+                    {
+                        if (naviX<width-1)
+                        {
+                            naviX++;
+                        }  
+                    }
+                    else if (navigation.Key == ConsoleKey.LeftArrow)
+                    {
+                        if (naviX>0)
+                        {
+                            naviX--;
+                        }
+                    }
+
+                    foreach (Point point in pole)
+                    {
+                        //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
+
+                        if (playerx == point.x && playery == point.y)
+                        {
+                            Console.Write("+");
+                        }
+                        else
+                        {
+                            Console.Write("*");
+                        }
+
+                        if (point.radek)
+                        {
+                            Console.WriteLine();
+                        }
+                    }
+                }
+
+
+                List<Ship> ships = new List<Ship>();
             
 
         }
