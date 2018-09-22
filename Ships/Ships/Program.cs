@@ -11,6 +11,8 @@ namespace Ships
         private static int index = 0;
         private static int width = 20;
         private static int height = 20;
+        /*private static int naviX = 0;
+        private static int naviY = 0;*/
         private static void map()
         {
 
@@ -82,11 +84,15 @@ namespace Ships
             return 100;
 
         }
+
+
+
         static void Main(string[] args)
         {
-
             Console.CursorVisible = false;
 
+            int naviX = 0;
+            int naviY = 0;
             int ponorky = 0;
             int ponorkyCount = 0;
             int torpedoborce = 0;
@@ -181,22 +187,14 @@ namespace Ships
 
 
 
-            /*foreach (ShipTypes shipType in Enum.GetValues(typeof(ShipTypes)))
-            {
-                Console.WriteLine(shipType);
-            }*/
 
-            Console.WriteLine("napiste souradnici x");
-            int playerx = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("napiste souradnici y");
-            int playery = Convert.ToInt32(Console.ReadLine());
 
             List<Point> pole = new List<Point>();
             bool radek1;
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < height; i++)
             {
 
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < width; j++)
                 {
                     if (j == width - 1)
                     {
@@ -208,8 +206,8 @@ namespace Ships
                     }
                     pole.Add(new Point
                     {
-                        x = i,
-                        y = j,
+                        x = j,
+                        y = i,
                         radek = radek1
                     });
                 }
@@ -217,67 +215,72 @@ namespace Ships
 
 
 
-            /*foreach (Point point in pole)
+            while (true)
             {
-                if (playerx == point.x && playery == point.y)
+
+                ConsoleKeyInfo navigation = Console.ReadKey();
+                
+                if (navigation.Key == ConsoleKey.RightArrow)
                 {
-                    Console.Write("+");
+                    if (naviX < width - 1) { naviX++;  }
                 }
-                else
+                else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
-                    Console.Write("*");
+                    if (naviX > 0) { naviX--; }
                 }
-
-                if (point.radek)
+                else if (navigation.Key == ConsoleKey.UpArrow)
                 {
-                    Console.WriteLine();
+                    if (naviY > 0) { naviY--; }
                 }
-            }*/
-
-
-
-                while (true)
+                else if (navigation.Key == ConsoleKey.DownArrow)
                 {
-                    ConsoleKeyInfo navigation = Console.ReadKey();
-                    int naviX = 0;
-                    int naviY = 0;
-                    if (navigation.Key == ConsoleKey.DownArrow)
+                    if (naviY < width-1) { naviY++; }
+                }
+                else if (navigation.Key == ConsoleKey.Enter)
+                {
+                    foreach (Ship lod in ship)
                     {
-                        if (naviX<width-1)
+                        if(lod.x != naviX && lod.x != naviY)
                         {
-                            naviX++;
-                        }  
-                    }
-                    else if (navigation.Key == ConsoleKey.LeftArrow)
-                    {
-                        if (naviX>0)
-                        {
-                            naviX--;
-                        }
-                    }
 
-                    foreach (Point point in pole)
-                    {
-                        //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
-
-                        if (playerx == point.x && playery == point.y)
-                        {
-                            Console.Write("+");
-                        }
-                        else
-                        {
-                            Console.Write("*");
-                        }
-
-                        if (point.radek)
-                        {
-                            Console.WriteLine();
                         }
                     }
                 }
+                Console.Clear();
+                Console.WriteLine(naviX);
+                Console.WriteLine(naviY);
+                Console.WriteLine();
+
+                foreach (Point point in pole)
+                {
+                    //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
+
+                    /*if (playerx == point.x && playery == point.y)
+                    {
+                        Console.Write("+");
+                    }*/
+                    if (point.x == naviX && point.y == naviY)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.Write("*");
+                        
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+
+                    if (point.radek)
+                    {
+                        Console.WriteLine();
+                    }
+                    Console.ResetColor();
+                }
+                
+            }
 
 
-                List<Ship> ships = new List<Ship>();
+            List<Ship> ships = new List<Ship>();
             
 
         }

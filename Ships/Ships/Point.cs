@@ -11,7 +11,7 @@ namespace Ships
         public int x;
         public int y;
         public bool radek;
-        private bool isShip;
+        publicboolhip = false;
         private bool state = true;
 
      
