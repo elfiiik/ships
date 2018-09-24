@@ -14,6 +14,6 @@ namespace Ships
         public bool ship = false;
         public bool hit = false;
 
-     
+        
     }
 }

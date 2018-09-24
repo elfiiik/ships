@@ -8,24 +8,51 @@ namespace Ships
 {
     class Ship
     {
-        /*public List<int> posX { get; set; }
-        public List<int> posY { get; set; }*/
-        public List<int> posX = new List<int>();
-        public List<int> posY = new List<int>();
-        public List<int> GetposX()
-        {
-            return posX;
-        }
-        public List<int> GetposY()
-        {
-            return posY;
-        }
+        public List<int> posX { get; set; }
+        public List<int> posY { get; set; }
+        /*public List<int> posX = new List<int>();
+        public List<int> posY = new List<int>();*/
+
 
         public int x;
         public int y;
         public string type;
 
-        
+        /*public static void AddShip(string shipadd)
+        {
+            switch(shipadd)
+            {
+                case "ponorka":
+                    ship.Add(new Ship
+                    {
+                        type = "Ponorka",
+                        posX = new List<int>() { 0 },
+                        posY = new List<int>() { 0 }
+                    });
+                    break;
+            }
+        }*/
+
+        /*public static void addShip()
+        {
+            List<Ship> ship = new List<Ship>();
+            Ship shiptest = new Ship();
+            int selectedMenuShip = drawMenu();
+            switch (selectedMenuShip)
+            {
+                case 0:
+                    ship.Add(new Ship
+                    {
+                        type = "Ponorka",
+                        posX = new List<int>() { 0 },
+                        posY = new List<int>() { 0 }
+                    });
+
+                    break;
+                default:
+                    break;
+            }
+        }*/
 
     }
 }
