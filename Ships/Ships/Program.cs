@@ -84,6 +84,30 @@ namespace Ships
         }
 
 
+        public static void addShip()
+        {
+            List<Ship> ship = new List<Ship>();
+            Ship shiptest = new Ship();
+            int selectedMenuShip = drawMenu();
+            switch (selectedMenuShip)
+            {
+                case 0:
+                    ship.Add(new Ship
+                    {
+                        type = "Ponorka",
+
+                        /*posX = new List<int>() { 0 },
+                        posY = new List<int>() { 0 }*/
+                    });
+                    shiptest.posX.Add(0);
+                    shiptest.posY.Add(0);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
 
         static void Main(string[] args)
         {
@@ -91,17 +115,10 @@ namespace Ships
 
             int naviX = 0;
             int naviY = 0;
-            List<int> posX = new List<int>()
-            {
-                naviX, naviX+1
-            };
-            List<int> posY = new List<int>()
-            {
-                naviY
-            };
+            
 
-            int ponorky = 0;
-            int ponorkyCount = 0;
+            int ponorky = 1;
+            int ponorkyCount = 1;
             int torpedoborce = 0;
             int krizniky = 0;
             int bitevnilode = 0;
@@ -109,13 +126,15 @@ namespace Ships
             int pocetlodi = ponorkyCount + torpedoborce + krizniky + bitevnilode;
 
             List<Ship> ship = new List<Ship>();
+            Ship shiptest = new Ship();
 
             for (int i = 0; i < ponorky; i++)
             {
                 /*ship.Add(new Ship
                 {
                     type = "Ponorka",
-                    x = 2
+                    posX = new List<int>() { 0 },
+                    posY = new List<int>() { 0 }
                 });*/
             }
 
@@ -163,10 +182,12 @@ namespace Ships
                             {
                                 ship.Add(new Ship
                                 {
-                                    x = shipx,
-                                    y = shipy,
+                                    /*x = shipx,
+                                    y = shipy,*/
                                     type = "Ponorka"
                                 });
+                                shiptest.posX.Add(0);
+                                shiptest.posY.Add(0);
                                 ponorkyCount--;
                             }
 
@@ -220,8 +241,10 @@ namespace Ships
                 }
             }
 
-
-
+            Ship ship2 = new Ship();
+            
+            Console.WriteLine(shiptest.posX[0]);
+            //List<Ship> posX = new List<Ship>();
             while (true)
             {
                 bool tryAdd = false;
@@ -229,7 +252,7 @@ namespace Ships
                 
                 if (navigation.Key == ConsoleKey.RightArrow)
                 {
-                    if (naviX < width - 1) { naviX++;  }
+                    if (naviX < width - 1) { naviX++; /*posX = posX.Select(x => x+1).ToList();*/  }
                 }
                 else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
@@ -248,8 +271,8 @@ namespace Ships
                     tryAdd = true;
                 }
                 Console.Clear();
-                Console.WriteLine(naviX);
-                Console.WriteLine(naviY);
+                Console.WriteLine();
+                //Console.WriteLine(posX[1]);
                 Console.WriteLine();
 
                 foreach (Point point in pole)
@@ -267,7 +290,7 @@ namespace Ships
                     {
                         Console.Write("+");
                     }*/
-                    if (point.x == List<int> posX && point.y == naviY)
+                    if (point.x == naviX && point.y == naviY)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("*");
