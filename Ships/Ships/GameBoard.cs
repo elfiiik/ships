@@ -10,7 +10,9 @@ namespace Ships
     {
         private static int width = 20;
         private static int height = 20;
-        private static List<Point> GameBoardGenerate()
+        public int naviX = 0;
+        public int naviY = 0;
+        private List<Point> GameBoardGenerate()
         {
             List<Point> pole = new List<Point>();
             bool radek1;
@@ -38,10 +40,9 @@ namespace Ships
             return pole;
         }
 
-        public static void GameBoardShow()
+        public void GameBoardShow()
         {
-            int naviX = 0;
-            int naviY = 0;
+            
             //Vypisování GameBoard a navigace po ní
             while (true)
             {

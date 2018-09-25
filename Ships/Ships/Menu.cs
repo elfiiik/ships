@@ -66,9 +66,10 @@ namespace Ships
 
         }
 
-        public static void MenuGenerate()
+        public void MenuGenerate()
         {
             List<Ship> ship = new List<Ship>();
+            GameBoard gameboard = new GameBoard();
 
             int ponorky = 1;
             int ponorkyCount = 1;
@@ -100,22 +101,23 @@ namespace Ships
                             Console.Clear();
 
                             Console.WriteLine($"Rozmisěte {ponorkyCount} ponorek");
-                            Console.WriteLine("napiste souradnici x");
+                            /*Console.WriteLine("napiste souradnici x");
                             int shipx = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("napiste souradnici y");
-                            int shipy = Convert.ToInt32(Console.ReadLine());
+                            int shipy = Convert.ToInt32(Console.ReadLine());*/
+                            gameboard.GameBoardShow();
 
                             if (ship.Count() != 0)
                             {
-                                foreach (Ship lod in ship)
+                                /*foreach (Ship lod in ship)
                                 {
-                                    if (shipx == lod.x && shipy == lod.y)
+                                    if (naviX == lod.x && shipy == lod.y)
                                     {
                                         add = false;
                                         Console.WriteLine("Pozice je obsazená");
                                         i--;
                                     }
-                                }
+                                }*/
                             }
 
                             if (add == true)
@@ -123,10 +125,11 @@ namespace Ships
                                 ship.Add(new Ship
                                 {
                                     type = "Ponorka",
-                                    posX = new List<int>() { 0 },
-                                    posY = new List<int>() { 0 }
+                                    posX = new List<int>() { gameboard.naviX },
+                                    posY = new List<int>() { gameboard.naviY }
                                 });
                                 ponorkyCount--;
+                                foreach ()
                             }
 
                             Console.ReadLine();

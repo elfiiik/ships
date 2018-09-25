@@ -13,13 +13,13 @@ namespace Ships
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-
+            Menu menu = new Menu();
             GameBoard gameboard = new GameBoard();
 
 
-            Menu.MenuGenerate();
+            menu.MenuGenerate();
 
-            GameBoard.GameBoardShow();
+            gameboard.GameBoardShow();
 
         }
     }
