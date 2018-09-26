@@ -77,12 +77,12 @@ namespace Ships
             GameBoard gameboard = new GameBoard();
             List<Ship> gameShips = gameboard.Ships();
 
-            int ponorky = 1;
-            int ponorkyCount = 1;
-            int torpedoborce = 1;
-            int torpedoborceCount = 1;
-            int krizniky = 0;
-            int kriznikyCount = 0;
+            int ponorky = 3;
+            int ponorkyCount = 3;
+            int torpedoborce = 2;
+            int torpedoborceCount = 2;
+            int krizniky = 1;
+            int kriznikyCount = 1;
             int bitevnilode = 0;
             int bitevnilodeCount = 0;
 
@@ -111,9 +111,7 @@ namespace Ships
                                 naviX.Clear();
                                 naviY.Clear();
                                 naviX.Add(0);
-                                naviX.Add(1);
                                 naviY.Add(0);
-                                naviY.Add(1);
 
                                 bool add = true;
                                 Console.Clear();
@@ -133,7 +131,6 @@ namespace Ships
                                                 if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
                                                 {
                                                     add = false;
-                                                    Console.WriteLine("Pozice je obsazená");
                                                     i--;
                                                 }
                                             }
@@ -186,8 +183,8 @@ namespace Ships
                                 naviX.Clear();
                                 naviY.Clear();
                                 naviX.Add(0);
+                                naviX.Add(1);
                                 naviY.Add(0);
-                                naviY.Add(1);
                                 bool add = true;
                                 Console.Clear();
 
@@ -243,6 +240,83 @@ namespace Ships
                         Console.Clear();
                     }
                 }
+                else if (selectedMenuIndex == 2)
+                {
+                    if (kriznikyCount > 0)
+                    {
+                        for (int i = 0; i < krizniky; i++)
+                        {
+                            if (torpedoborceCount > 0)
+                            {
+                                naviX.Clear();
+                                naviY.Clear();
+                                naviX.Add(0);
+                                naviX.Add(1);
+                                naviX.Add(2);
+                                naviY.Add(0);
+                                bool add = true;
+                                Console.Clear();
+
+                                Console.WriteLine($"Rozmisěte {kriznikyCount} krizniky");
+                                gameboard.GameBoardShow(naviX, naviY);
+
+                                if (gameShips.Count() != 0)
+                                {
+                                    foreach (Ship lod in gameShips)
+                                    {
+                                        for (int o = 0; o < naviX.Count(); o++)
+                                        {
+                                            for (int j = 0; j < naviY.Count(); j++)
+                                            {
+
+                                                if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
+                                                {
+                                                    add = false;
+                                                    Console.WriteLine("Pozice je obsazená");
+                                                    i--;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (add == true)
+                                {
+                                    gameShips.Add(new Ship
+                                    {
+                                        type = "Kriznik",
+                                        posX = naviX,
+                                        posY = naviY
+                                    });
+                                    torpedoborceCount--;
+                                    foreach (Point point in gameboard.GetGameBoard())
+                                    {
+                                        if (naviX.Contains(point.x) && naviY.Contains(point.y))
+                                        {
+                                            point.ship = true;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Došli ti krizniky");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                }
+
+
+
+
+
+
+
+
             }
         }
     }
