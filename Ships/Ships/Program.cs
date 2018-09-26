@@ -8,10 +8,9 @@ namespace Ships
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
+
             Console.CursorVisible = false;
             Menu menu = new Menu();
             GameBoard gameboard = new GameBoard();
@@ -19,7 +18,7 @@ namespace Ships
 
             menu.MenuGenerate();
 
-            gameboard.GameBoardShow();
+            //gameboard.GameBoardShow();
 
         }
     }

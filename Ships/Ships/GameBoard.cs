@@ -10,11 +10,11 @@ namespace Ships
     {
         private static int width = 20;
         private static int height = 20;
-        public int naviX = 0;
-        public int naviY = 0;
-        private List<Point> GameBoardGenerate()
+        /*public int naviX = 0;
+        public int naviY = 0;*/
+        private List<Point> gameBoardMap = new List<Point>();
+        public GameBoard()
         {
-            List<Point> pole = new List<Point>();
             bool radek1;
             for (int i = 0; i < height; i++)
             {
@@ -29,7 +29,7 @@ namespace Ships
                     {
                         radek1 = false;
                     }
-                    pole.Add(new Point
+                    gameBoardMap.Add(new Point
                     {
                         x = j,
                         y = i,
@@ -37,58 +37,90 @@ namespace Ships
                     });
                 }
             }
-            return pole;
         }
 
-        public void GameBoardShow()
+        public List<Point> GetGameBoard()
         {
+            return gameBoardMap;
+        }
+
+        Menu menu = new Menu();
+        private List<Ship> ship = new List<Ship>();
+        public List<Ship> Ships()
+        {
+            return ship;
+        }
+
+        public void GameBoardShow(List<int> naviX, List<int> naviY)
+        {
+
+
             
             //Vypisování GameBoard a navigace po ní
-            while (true)
+            bool hmm = true;
+            while (hmm)
             {
                 bool tryAdd = false;
                 ConsoleKeyInfo navigation = Console.ReadKey();
-
                 if (navigation.Key == ConsoleKey.RightArrow)
                 {
-                    if (naviX < width - 1) { naviX++; /*posX = posX.Select(x => x+1).ToList();*/  }
+                    if (naviX.Max() < width - 1) {
+                        for (int i = 0; i < naviX.Count(); i++)
+                        {
+                            naviX[i]++;
+                        }
+
+                    }
                 }
                 else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
-                    if (naviX > 0) { naviX--; }
+                    if (naviX.Min() > 0)
+                    {
+                        for (int i = 0; i < naviX.Count(); i++)
+                        {
+                            naviX[i]--;
+                        }
+                    }
                 }
                 else if (navigation.Key == ConsoleKey.UpArrow)
                 {
-                    if (naviY > 0) { naviY--; }
+                    if (naviY.Min() > 0)
+                    {
+                        for (int i = 0; i < naviY.Count(); i++)
+                        {
+                            naviY[i]--;
+                        }
+                    }
                 }
                 else if (navigation.Key == ConsoleKey.DownArrow)
                 {
-                    if (naviY < width - 1) { naviY++; }
+                    if (naviY.Max() < width - 1)
+                    {
+                        for (int i = 0; i < naviY.Count(); i++)
+                        {
+                            naviY[i]++;
+                        }
+                    }
                 }
                 else if (navigation.Key == ConsoleKey.Enter)
                 {
                     tryAdd = true;
                 }
-                Console.Clear();
-                Console.WriteLine();
 
-                List<Point> gameboardgen = GameBoardGenerate();
-                foreach (Point point in gameboardgen)
+                Console.Clear();
+
+
+                
+                foreach (Point point in gameBoardMap)
                 {
                     if (tryAdd)
                     {
-                        if (point.ship == false && point.x == naviX && point.y == naviY)
-                        {
-                            point.ship = true;
-                        }
+                        hmm = false;
                     }
-                    //Console.WriteLine($"X={point.x} a Y={point.y}-----{point.radek}");
 
-                    /*if (playerx == point.x && playery == point.y)
-                    {
-                        Console.Write("+");
-                    }*/
-                    if (point.x == naviX && point.y == naviY)
+
+    
+                    if (naviX.Contains(point.x) && naviY.Contains(point.y))
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("*");
@@ -110,8 +142,9 @@ namespace Ships
                     }
                     Console.ResetColor();
                 }
-
+                
             }
+            
         }
 
 
