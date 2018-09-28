@@ -12,7 +12,7 @@ namespace Ships
         public int y;
         public bool radek;
         public bool ship = false;
-        public bool hit = false;
+        public  bool hit = false;
 
         
     }

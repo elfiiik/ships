@@ -78,8 +78,8 @@ namespace Ships
 
             int ponorky = 3;
             int ponorkyCount = 3;
-            int torpedoborce = 1;
-            int torpedoborceCount = 1;
+            int torpedoborce = 3;
+            int torpedoborceCount = 3;
             int krizniky = 1;
             int kriznikyCount = 1;
             int bitevnilode = 0;
@@ -104,7 +104,6 @@ namespace Ships
                 {
                     if (ponorkyCount > 0)
                     {
-
                         for (int i = 0; i < ponorky; i++)
                         {
                             if (ponorkyCount > 0)
@@ -135,23 +134,56 @@ namespace Ships
                                 Console.ReadLine();
                                 if (gameShips.Count() != 0)
                                 {
-                                    foreach (Ship lod in gameShips)
+                                    for (int j = 0; j < gameboard.GetNavi().Count(); j++)
                                     {
-                                        for (int o = 0; o < naviX.Count(); o++)
-                                        {
-                                            for (int j = 0; j < naviY.Count(); j++)
-                                            {
 
-                                                if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
+                                        foreach (Point policko in gameboard.GetGameBoard())
+                                        {
+                                            if (gameboard.GetNavi()[j].x == policko.x && gameboard.GetNavi()[j].y == policko.y)
+                                            {
+                                                if (policko.ship)
                                                 {
-                                                    Console.WriteLine($"Pozice je obsazena");
-                                                    Console.ReadLine();
                                                     add = false;
                                                     i--;
                                                 }
+                                                else
+                                                {
+                                                    foreach (Ship lod in gameboard.Ships())
+                                                    {
+                                                        foreach (Point posi in lod.pos)
+                                                        {
+                                                            Console.WriteLine($"navi x{gameboard.GetNavi()[j].x} y{gameboard.GetNavi()[j].y}");
+                                                            Console.WriteLine($"ship pos x{posi.x} y{posi.y}");
+                                                            
+                                                            if (gameboard.GetNavi()[j].x == posi.x - 1 && gameboard.GetNavi()[j].y == posi.y)
+                                                            {
+                                                                add = false;
+                                                                i--;
+                                                            }
+                                                            else if (gameboard.GetNavi()[j].x == posi.x + 1 && gameboard.GetNavi()[j].y == posi.y)
+                                                            {
+                                                                add = false;
+                                                                i--;
+                                                            }
+                                                            else if (gameboard.GetNavi()[j].y == posi.y + 1 && gameboard.GetNavi()[j].x == posi.x)
+                                                            {
+                                                                add = false;
+                                                                i--;
+                                                            }
+                                                            else if (gameboard.GetNavi()[j].y == posi.y - 1 && gameboard.GetNavi()[j].x == posi.x)
+                                                            {
+                                                                add = false;
+                                                                i--;
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                                
                                             }
                                         }
                                     }
+
                                 }
 
                                 if (add == true)
@@ -164,21 +196,18 @@ namespace Ships
 
                                     ponorkyCount--;
 
-
                                     for (int j = 0; j < gameboard.GetNavi().Count(); j++)
                                     {
-                                        
+
                                         foreach (Point policko in gameboard.GetGameBoard())
                                         {
                                             if (gameboard.GetNavi()[j].x == policko.x && gameboard.GetNavi()[j].y == policko.y)
                                             {
-                                                Console.ReadLine();
                                                 policko.ship = true;
+
                                             }
-                                        }   
+                                        }
                                     }
-
-
                                 }
                             }
                         }
@@ -193,119 +222,51 @@ namespace Ships
                     }
                 }
 
-                /*else if (selectedMenuIndex == 1)
-                {
-                    if (torpedoborceCount > 0)
-                    {
-
-                        for (int i = 0; i < torpedoborce; i++)
-                        {
-                            if (torpedoborceCount > 0)
-                            {
-                                gameboard.GetNaviX().Clear();
-                                gameboard.GetNaviY().Clear();
-                                gameboard.GetNaviX().Add(0);
-                                gameboard.GetNaviX().Add(1);
-                                gameboard.GetNaviY().Add(0);
-                                add = true;
-
-                                Console.Clear();
-
-                                Console.WriteLine($"Rozmisěte {torpedoborceCount} ponorek");
-                                gameboard.GameBoardShow();
-                                Console.ReadLine();
-                                if (gameShips.Count() != 0)
-                                {
-                                    foreach (Ship lod in gameShips)
-                                    {
-                                        for (int o = 0; o < naviX.Count(); o++)
-                                        {
-                                            for (int j = 0; j < naviY.Count(); j++)
-                                            {
-
-                                                if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
-                                                {
-                                                    Console.WriteLine($"Pozice je obsazena");
-                                                    Console.ReadLine();
-                                                    add = false;
-                                                    i--;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (add == true)
-                                {
-                                    gameboard.Ships().Add(new Ship
-                                    {
-                                        type = "Torpedoborec",
-                                        posX = new List<int>() { gameboard.GetNaviX()[0] , gameboard.GetNaviX()[1] },
-                                        posY = new List<int>() { gameboard.GetNaviY()[0] }
-                                    });
-
-                                    torpedoborceCount--;
-                                    foreach (Point policko in gameboard.GetGameBoard())
-                                    {
-                                        if (naviX.Contains(policko.x) && naviY.Contains(policko.y))
-                                        {
-                                            policko.ship = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Došli ti torpedoborce");
-                        Console.ReadLine();
-                        Console.Clear();
-                    }
-                }*/
-
                 else if (selectedMenuIndex == 1)
                 {
                     if (torpedoborceCount > 0)
                     {
-
                         for (int i = 0; i < torpedoborce; i++)
                         {
                             if (torpedoborceCount > 0)
                             {
-                                gameboard.GetNaviX().Clear();
-                                gameboard.GetNaviY().Clear();
-                                gameboard.GetNaviX().Add(0);
-                                gameboard.GetNaviX().Add(1);
-                                gameboard.GetNaviY().Add(0);
+                                gameboard.GetNavi().Clear();
+                                gameboard.GetNavi().Add(new Point
+                                {
+                                    x = 0,
+                                    y = 0
+                                });
+                                gameboard.GetNavi().Add(new Point
+                                {
+                                    x = 1,
+                                    y = 0
+                                });    
+
                                 add = true;
 
                                 Console.Clear();
 
-                                Console.WriteLine($"Rozmisěte {torpedoborceCount} ponorek");
+                                Console.WriteLine($"Rozmisěte {torpedoborceCount} torpedoborce");
                                 gameboard.GameBoardShow();
                                 Console.ReadLine();
                                 if (gameShips.Count() != 0)
                                 {
-                                    foreach (Ship lod in gameShips)
+                                    for (int j = 0; j < gameboard.GetNavi().Count(); j++)
                                     {
-                                        for (int o = 0; o < naviX.Count(); o++)
-                                        {
-                                            for (int j = 0; j < naviY.Count(); j++)
-                                            {
 
-                                                if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
+                                        foreach (Point policko in gameboard.GetGameBoard())
+                                        {
+                                            if (gameboard.GetNavi()[j].x == policko.x && gameboard.GetNavi()[j].y == policko.y)
+                                            {
+                                                if (policko.ship)
                                                 {
-                                                    Console.WriteLine($"Pozice je obsazena");
-                                                    Console.ReadLine();
                                                     add = false;
                                                     i--;
                                                 }
                                             }
                                         }
                                     }
+
                                 }
 
                                 if (add == true)
@@ -313,16 +274,21 @@ namespace Ships
                                     gameboard.Ships().Add(new Ship
                                     {
                                         type = "Torpedoborec",
-                                        posX = new List<int>() { gameboard.GetNaviX()[0], gameboard.GetNaviX()[1] },
-                                        posY = new List<int>() { gameboard.GetNaviY()[0] }
+                                        pos = new List<Point>() { gameboard.GetNavi()[0] }
                                     });
 
                                     torpedoborceCount--;
-                                    foreach (Point policko in gameboard.GetGameBoard())
+
+                                    for (int j = 0; j < gameboard.GetNavi().Count(); j++)
                                     {
-                                        if (naviX.Contains(policko.x) && naviY.Contains(policko.y))
+
+                                        foreach (Point policko in gameboard.GetGameBoard())
                                         {
-                                            policko.ship = true;
+                                            if (gameboard.GetNavi()[j].x == policko.x && gameboard.GetNavi()[j].y == policko.y)
+                                            {
+                                                policko.ship = true;
+
+                                            }
                                         }
                                     }
                                 }
@@ -334,82 +300,6 @@ namespace Ships
                     {
                         Console.Clear();
                         Console.WriteLine("Došli ti torpedoborce");
-                        Console.ReadLine();
-                        Console.Clear();
-                    }
-                }
-
-
-                else if (selectedMenuIndex == 6)
-                {
-                    if (hydroplanCount > 0)
-                    {
-
-                        for (int i = 0; i < hydroplan; i++)
-                        {
-                            if (hydroplanCount > 0)
-                            {
-                                gameboard.GetNaviX().Clear();
-                                gameboard.GetNaviY().Clear();
-                                gameboard.GetNaviX().Add(1);
-                                gameboard.GetNaviX().Add(0);
-                                gameboard.GetNaviX().Add(2);
-                                gameboard.GetNaviY().Add(0);
-                                gameboard.GetNaviY().Add(1);
-                                add = true;
-
-                                Console.Clear();
-
-                                Console.WriteLine($"Rozmisěte {hydroplanCount} hydroplanu");
-                                gameboard.GameBoardShow();
-                                Console.ReadLine();
-                                if (gameShips.Count() != 0)
-                                {
-                                    foreach (Ship lod in gameShips)
-                                    {
-                                        for (int o = 0; o < naviX.Count(); o++)
-                                        {
-                                            for (int j = 0; j < naviY.Count(); j++)
-                                            {
-
-                                                if (lod.posX.Contains(naviX[o]) && lod.posY.Contains(naviY[j]))
-                                                {
-                                                    Console.WriteLine($"Pozice je obsazena");
-                                                    Console.ReadLine();
-                                                    add = false;
-                                                    i--;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (add == true)
-                                {
-                                    gameboard.Ships().Add(new Ship
-                                    {
-                                        type = "Hydroplan",
-                                        posX = new List<int>() { gameboard.GetNaviX()[0] },
-                                        posY = new List<int>() { gameboard.GetNaviY()[0], gameboard.GetNaviY()[1] }
-                                    });
-
-                                    hydroplanCount--;
-                                    foreach (Point policko in gameboard.GetGameBoard())
-                                    {
-                                        if (naviX.Contains(policko.x) && naviY.Contains(policko.y))
-                                        {
-                                            policko.ship = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Došli ti hydroplany");
                         Console.ReadLine();
                         Console.Clear();
                     }

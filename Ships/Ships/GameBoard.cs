@@ -143,78 +143,11 @@ namespace Ships
                 {
                     tryAdd = true;
                 }
-                /*else if (navigation.Key == ConsoleKey.LeftArrow)
-                {
-                    if (naviX.Min() > 0)
-                    {
-                        for (int i = 0; i < naviX.Count(); i++)
-                        {
-                            naviX[i]--;
-                        }
-                    }
-                }
-                else if (navigation.Key == ConsoleKey.UpArrow)
-                {
-                    if (naviY.Min() > 0)
-                    {
-                        for (int i = 0; i < naviY.Count(); i++)
-                        {
-                            naviY[i]--;
-                        }
-                    }
-                }
-                else if (navigation.Key == ConsoleKey.DownArrow)
-                {
-                    if (naviY.Max() < width - 1)
-                    {
-                        for (int i = 0; i < naviY.Count(); i++)
-                        {
-                            naviY[i]++;
-                        }
-                    }
-                }
-                else if (navigation.Key == ConsoleKey.Enter)
-                {
-                    tryAdd = true;
-                }*/
+
 
                 Console.Clear();
 
-
-                /*int naviC = navi.Count();
-                for (int i = 0; i < width * height; i++)
-                {
-                    
-                    if (navi.Count() <= i+1)
-                    {
-                        if (gameBoardMap.Contains(navi[0]))
-                        {
-                            Console.BackgroundColor = ConsoleColor.Yellow;
-                        }
-                    }
-                    else if (gameBoardMap[i].ship)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                    }
-                    else
-                    {
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    }
-
-                    Console.Write("*");
-                    if (gameBoardMap[i].radek)
-                    {
-                        Console.WriteLine();
-                    }
-                    Console.ResetColor();
-                }
-
-                int pocet = 0;
-                foreach (Point navig in navi)
-                {
-                    pocet++;
-                }*/
-
+       
                 List<int> addX = new List<int>();
                 List<int> addY = new List<int>();
                 addX.Clear();
@@ -252,7 +185,7 @@ namespace Ships
                         }
                     }
                         
-                    if (gameBoardMap[i].ship)
+                    if (addelse && gameBoardMap[i].ship)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write("*");
