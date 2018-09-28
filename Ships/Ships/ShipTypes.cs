@@ -12,6 +12,8 @@ namespace Ships
         Torpédoborec,
         Křižník,
         Bitevní_loď,
-        Letadlová_loď
+        Letadlová_loď,
+        Přistávací_základna,
+        Hydroplán
     }
 }

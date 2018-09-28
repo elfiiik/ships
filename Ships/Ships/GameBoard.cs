@@ -56,6 +56,11 @@ namespace Ships
             return naviY;
         }
 
+        private List<Point> navi= new List<Point>();
+        public List<Point> GetNavi()
+        {
+            return navi;
+        }
 
         private List<Ship> ship = new List<Ship>();
         public List<Ship> Ships()
@@ -67,33 +72,21 @@ namespace Ships
         {
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
+            int maxX = navi.Max(x => x.x);
             while (hmm)
             {
-                /*foreach (Ship lod in ship)
-                {
-                    Console.WriteLine(lod.type);
-                    Console.Write(lod.posX[0]);
-                    Console.Write(lod.posY[0]);
-                }
-                foreach (int navx in naviX)
-                {
-                    Console.WriteLine(navx);
-                }
-                foreach (int navy in naviY)
-                {
-                    Console.WriteLine(navy);
-                }*/
                 bool tryAdd = false;
                 ConsoleKeyInfo navigation = Console.ReadKey();
                 if (navigation.Key == ConsoleKey.RightArrow)
                 {
-                    if (naviX.Max() < width - 1) {
-                        for (int i = 0; i < naviX.Count(); i++)
+                    if (maxX < width - 1)
+                    {
+                        foreach (Point navig in navi)
                         {
-                            naviX[i]++;
+                            navig.x++;                       
                         }
-
                     }
+
                 }
                 else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
@@ -133,7 +126,7 @@ namespace Ships
                 Console.Clear();
 
 
-                
+
                 foreach (Point point in gameBoardMap)
                 {
                     if (tryAdd)
@@ -141,14 +134,24 @@ namespace Ships
                         hmm = false;
                     }
 
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.x == point.x && navig.y == point.y)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("*");
 
-    
-                    if (naviX.Contains(point.x) && naviY.Contains(point.y))
+                        }
+                    }
+                    
+                    
+                    
+                    /*if (naviX.Contains(point.x) && naviY.Contains(point.y))
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("*");
 
-                    }
+                    }*/
                     else if (point.ship)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
