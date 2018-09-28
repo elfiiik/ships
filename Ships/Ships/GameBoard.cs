@@ -72,23 +72,78 @@ namespace Ships
         {
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
-            int maxX = navi.Max(x => x.x);
             while (hmm)
             {
+                foreach (Point bod in navi)
+                {
+                    Console.WriteLine($"bod x{bod.x} y{bod.y}");
+                }
+                
                 bool tryAdd = false;
+                bool zvetsit = true;
                 ConsoleKeyInfo navigation = Console.ReadKey();
                 if (navigation.Key == ConsoleKey.RightArrow)
                 {
-                    if (maxX < width - 1)
+                    foreach (Point navig in navi)
                     {
-                        foreach (Point navig in navi)
+                        if (navig.x >= width-1)
                         {
-                            navig.x++;                       
-                        }
+                            zvetsit = false;
+                        }                                                            
                     }
-
+                    foreach(Point navig in navi)
+                    {
+                        if (zvetsit) { navig.x++; }
+                    }
+                    
                 }
                 else if (navigation.Key == ConsoleKey.LeftArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.x < 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.x--; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.UpArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.y < 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.y--; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.DownArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.y >= height - 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.y++; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.Enter)
+                {
+                    tryAdd = true;
+                }
+                /*else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
                     if (naviX.Min() > 0)
                     {
@@ -121,57 +176,101 @@ namespace Ships
                 else if (navigation.Key == ConsoleKey.Enter)
                 {
                     tryAdd = true;
-                }
+                }*/
 
                 Console.Clear();
 
 
-
-                foreach (Point point in gameBoardMap)
+                /*int naviC = navi.Count();
+                for (int i = 0; i < width * height; i++)
                 {
-                    if (tryAdd)
+                    
+                    if (navi.Count() <= i+1)
                     {
-                        hmm = false;
-                    }
-
-                    foreach (Point navig in navi)
-                    {
-                        if (navig.x == point.x && navig.y == point.y)
+                        if (gameBoardMap.Contains(navi[0]))
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
-                            Console.Write("*");
-
                         }
                     }
-                    
-                    
-                    
-                    /*if (naviX.Contains(point.x) && naviY.Contains(point.y))
-                    {
-                        Console.BackgroundColor = ConsoleColor.Yellow;
-                        Console.Write("*");
-
-                    }*/
-                    else if (point.ship)
+                    else if (gameBoardMap[i].ship)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
-                        Console.Write("*");
                     }
                     else
                     {
-                        Console.Write("*");
+                        Console.BackgroundColor = ConsoleColor.Black;
                     }
 
-                    if (point.radek)
+                    Console.Write("*");
+                    if (gameBoardMap[i].radek)
                     {
                         Console.WriteLine();
                     }
                     Console.ResetColor();
                 }
-                
-            }
-            
+
+                int pocet = 0;
+                foreach (Point navig in navi)
+                {
+                    pocet++;
+                }*/
+
+                List<int> addX = new List<int>();
+                List<int> addY = new List<int>();
+                addX.Clear();
+                addY.Clear();
+                foreach (Point point in gameBoardMap)
+                {
+                    foreach (Point navigace in navi)
+                    {
+                        if (point.x == navigace.x && point.y == navigace.y)
+                        {                
+                            addX.Add(navigace.x);
+                            addY.Add(navigace.y);
+                        }
+                        
+                    }
+
+                }
+
+                for (int i = 0; i < width * height; i++)
+                {
+                    if (tryAdd)
+                    {
+                        hmm = false;                        
+                    }
+
+                    bool addelse = true;
+
+                    for(int j=0; j<addX.Count();j++)
+                    {
+                        if (addX[j] == gameBoardMap[i].x && addY[j]== gameBoardMap[i].y)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("*");
+                            addelse = false;
+                        }
+                    }
+                        
+                    if (gameBoardMap[i].ship)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("*");
+                    }
+                    else if(addelse)
+                    {
+                        Console.Write("*");
+                    }
+                    if (gameBoardMap[i].radek)
+                    {
+                        Console.WriteLine();
+                    }
+                    Console.ResetColor();
+                }
+            }         
         }
+
+
 
 
     }

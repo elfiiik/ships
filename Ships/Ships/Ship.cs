@@ -12,7 +12,7 @@ namespace Ships
         public List<int> posY = new List<int>();*/
         public List<int> posX { get; set; }
         public List<int> posY { get; set; }
-        public List<int> pos { get; set; }
+        public List<Point> pos { get; set; }
 
         public string type;
 

@@ -109,15 +109,23 @@ namespace Ships
                         {
                             if (ponorkyCount > 0)
                             {
-                                gameboard.GetNaviX().Clear();
-                                gameboard.GetNaviY().Clear();
-                                gameboard.GetNaviX().Add(0);
-                                gameboard.GetNaviY().Add(0);
+                                gameboard.GetNavi().Clear();
                                 gameboard.GetNavi().Add(new Point
                                 {
-                                    x=0,
+                                    x=1,
                                     y=0
                                 });
+                                gameboard.GetNavi().Add(new Point
+                                {
+                                    x = 0,
+                                    y = 1
+                                });
+                                gameboard.GetNavi().Add(new Point
+                                {
+                                    x = 2,
+                                    y = 1
+                                });
+
                                 add = true;
                                 
                                 Console.Clear();
@@ -151,19 +159,25 @@ namespace Ships
                                     gameboard.Ships().Add(new Ship
                                     {
                                         type = "Ponorka",
-                                        posX = new List<int>() { gameboard.GetNaviX()[0] },
-                                        posY = new List<int>() { gameboard.GetNaviY()[0] },
-                                        pos = new List<int>() { }
+                                        pos = new List<Point>() { gameboard.GetNavi()[0]}
                                     });
 
                                     ponorkyCount--;
-                                    foreach (Point policko in gameboard.GetGameBoard())
+
+
+                                    for (int j = 0; j < gameboard.GetNavi().Count(); j++)
                                     {
-                                        if (naviX.Contains(policko.x) && naviY.Contains(policko.y))
+                                        
+                                        foreach (Point policko in gameboard.GetGameBoard())
                                         {
-                                            policko.ship = true;
-                                        }
+                                            if (gameboard.GetNavi()[j].x == policko.x && gameboard.GetNavi()[j].y == policko.y)
+                                            {
+                                                Console.ReadLine();
+                                                policko.ship = true;
+                                            }
+                                        }   
                                     }
+
 
                                 }
                             }
