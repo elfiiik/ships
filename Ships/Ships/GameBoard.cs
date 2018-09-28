@@ -44,22 +44,45 @@ namespace Ships
             return gameBoardMap;
         }
 
-        Menu menu = new Menu();
+        private List<int> naviX = new List<int>();
+        public List<int> GetNaviX()
+        {
+            return naviX;
+        }
+
+        private List<int> naviY = new List<int>();
+        public List<int> GetNaviY()
+        {
+            return naviY;
+        }
+
+
         private List<Ship> ship = new List<Ship>();
         public List<Ship> Ships()
         {
             return ship;
         }
 
-        public void GameBoardShow(List<int> naviX, List<int> naviY)
+        public void GameBoardShow()
         {
-
-
-            
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
             while (hmm)
             {
+                /*foreach (Ship lod in ship)
+                {
+                    Console.WriteLine(lod.type);
+                    Console.Write(lod.posX[0]);
+                    Console.Write(lod.posY[0]);
+                }
+                foreach (int navx in naviX)
+                {
+                    Console.WriteLine(navx);
+                }
+                foreach (int navy in naviY)
+                {
+                    Console.WriteLine(navy);
+                }*/
                 bool tryAdd = false;
                 ConsoleKeyInfo navigation = Console.ReadKey();
                 if (navigation.Key == ConsoleKey.RightArrow)
