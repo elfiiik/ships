@@ -14,6 +14,7 @@ namespace Ships
         public List<int> posY { get; set; }
         public List<Point> pos { get; set; }
 
+        public int hp; 
         public string type;
 
         public List<int> ShipRotate(List<int>RotX, List<int>RotY)

@@ -1149,10 +1149,16 @@ namespace Ships
             return navi;
         }
 
-        private List<Ship> ship = new List<Ship>();
-        public List<Ship> Ships()
+        private List<Ship> ship1 = new List<Ship>();
+        public List<Ship> Ships1()
         {
-            return ship;
+            return ship1;
+        }
+
+        private List<Ship> ship2 = new List<Ship>();
+        public List<Ship> Ships2()
+        {
+            return ship2;
         }
 
 
@@ -1449,7 +1455,208 @@ namespace Ships
         }
 
 
+        public void GameMap(int player)
+        {
+            int navX = 0;
+            int navY = 0;
+            bool cykl = true;
+            bool zasah = false;
+            bool kill = false;
+            bool missed = false;
+            while (cykl)
+            {
+                if (Ships1().Count() < 1 || Ships2().Count() < 1)
+                {
+                    cykl = false;
+                    break;
+                }
 
+                if (player == 1)
+                {
+                    Console.WriteLine("Player 1:");
+                }
+                else if (player == 2)
+                {
+                    Console.WriteLine("Player 2:");
+                }
+
+                if (zasah)
+                {
+                    Console.WriteLine("Zásah! Střílej znova");
+                }
+                else if (kill)
+                {
+                    Console.WriteLine($"Potopil si nepřátelskou loď! Střílej znova");
+                }
+                bool tryAttack = false;
+                ConsoleKeyInfo navigation = Console.ReadKey();
+                if (navigation.Key == ConsoleKey.RightArrow)
+                {
+                    if (navX < width - 1) { navX++; }
+                }
+                else if (navigation.Key == ConsoleKey.LeftArrow)
+                {
+                    if (navX >= 1) { navX--; }
+                }
+                else if (navigation.Key == ConsoleKey.UpArrow)
+                {
+                    if (navY >= 1) { navY--; }
+                }
+                else if (navigation.Key == ConsoleKey.DownArrow)
+                {
+                    if (navY < height - 1) { navY++; }
+                }
+                else if (navigation.Key == ConsoleKey.Enter)
+                {
+                    tryAttack = true;
+                }
+
+                Console.Clear();
+                
+                if (player == 1)
+                {
+                    foreach (Point point in gameBoardMap2)
+                    {
+                        if (tryAttack && navX == point.x && navY == point.y && point.hit == false && point.miss == false)
+                        {
+                            if (point.ship)
+                            {
+                                point.hit = true;
+                                foreach (Ship lod2 in Ships2())
+                                {
+                                    foreach (Point posi in lod2.pos)
+                                    {
+                                        if (posi.x == point.x && posi.y==point.y)
+                                        {
+                                            lod2.hp--;
+                                            if(lod2.hp < 1)
+                                            {
+                                                kill = true;
+                                                zasah = false;
+                                            }
+                                            else { zasah = true; kill = false; }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                point.miss = true;
+                                cykl = false;
+                                zasah = false;
+                                kill = false;
+                                Console.Clear();
+                                Console.WriteLine("Netrefil ses, hraje Player 2");
+                                Console.ReadLine();
+                            }
+                        }
+                        if (navX==point.x && navY==point.y)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("*");
+                        }
+                        else if (point.hit == false && point.miss==false)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.Write("*");
+                        }
+                        else if(point.hit)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.Write("*");
+                        }
+                        else if (point.miss)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write("*");
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.Write("*");
+                        }
+                        if (point.radek)
+                        {
+                            Console.WriteLine();
+                        }
+                        Console.ResetColor();
+                    }
+                }
+
+                else if (player == 2)
+                {
+                    foreach (Point point in gameBoardMap1)
+                    {
+                        if (tryAttack && navX == point.x && navY == point.y && point.hit == false && point.miss == false)
+                        {
+                            if (point.ship)
+                            {
+                                point.hit = true;
+                                foreach (Ship lod1 in Ships1())
+                                {
+                                    foreach (Point posi in lod1.pos)
+                                    {
+                                        if (posi.x == point.x && posi.y == point.y)
+                                        {
+                                            lod1.hp--;
+                                            if (lod1.hp < 1)
+                                            {
+                                                kill = true;
+                                                zasah = false;
+                                            }
+                                            else { zasah = true; kill = false; }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                point.miss = true;
+                                cykl = false;
+                                zasah = false;
+                                kill = false;
+                                Console.Clear();
+                                Console.WriteLine("Netrefil ses, hraje Player 1");
+                                Console.ReadLine();
+                            }
+                        }
+                        if (navX == point.x && navY == point.y)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("*");
+                        }
+                        else if (point.hit == false && point.miss == false)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.Write("*");
+                        }
+                        else if (point.hit)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.Write("*");
+                        }
+                        else if (point.miss)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write("*");
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.Write("*");
+                        }
+                        if (point.radek)
+                        {
+                            Console.WriteLine();
+                        }
+                        Console.ResetColor();
+                    }
+                }
+
+
+
+            }
+        }
 
     }
 }
