@@ -78,27 +78,155 @@ namespace Ships
                 case "Torpedoborec":
                     switch (rot)
                     {
-                        case 0:
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
                             break;
-
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
                     }
                 break;
+
+                case "Kriznik":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                    }
+                    break;
             }
         }
 
 
-        public void GameBoardShow()
+        public void GameBoardShow(string shiptype)
         {
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
+            int rotate = 0;
             while (hmm)
             {
                 /*foreach (Point bod in navi)
                 {
                     Console.WriteLine($"bod x{bod.x} y{bod.y}");
                 }*/
-
-                int rotate = 0;
+                Console.WriteLine(rotate);
                 bool tryAdd = false;
                 bool zvetsit = true;
                 ConsoleKeyInfo navigation = Console.ReadKey();
@@ -165,14 +293,13 @@ namespace Ships
                 }
                 else if (navigation.Key == ConsoleKey.R)
                 {
-                    if (rotate == 4)
+                    rotate++;
+                    if (rotate == 5)
                     {
-                        rotate = 0;
+                        rotate = 1;
                     }
-                    else
-                    {
-                        rotate++;
-                    }
+
+                    ShipRotate(shiptype, rotate);
                 }
 
 

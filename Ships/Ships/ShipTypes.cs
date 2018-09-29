@@ -14,6 +14,12 @@ namespace Ships
         Bitevní_loď,
         Letadlová_loď,
         Přistávací_základna,
-        Hydroplán
+        Hydroplán,
+        Křižník2,
+        Těžký_křižník,
+        Katamaran,
+        Lehká_bitevní_loď,
+        Letadlová_loď2
+        
     }
 }
