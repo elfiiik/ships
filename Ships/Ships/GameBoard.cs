@@ -68,17 +68,37 @@ namespace Ships
             return ship;
         }
 
+
+
+        public void ShipRotate(string type,int rot)
+        {
+            navi.Clear();
+            switch(type)
+            {
+                case "Torpedoborec":
+                    switch (rot)
+                    {
+                        case 0:
+                            break;
+
+                    }
+                break;
+            }
+        }
+
+
         public void GameBoardShow()
         {
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
             while (hmm)
             {
-                foreach (Point bod in navi)
+                /*foreach (Point bod in navi)
                 {
                     Console.WriteLine($"bod x{bod.x} y{bod.y}");
-                }
-                
+                }*/
+
+                int rotate = 0;
                 bool tryAdd = false;
                 bool zvetsit = true;
                 ConsoleKeyInfo navigation = Console.ReadKey();
@@ -86,16 +106,16 @@ namespace Ships
                 {
                     foreach (Point navig in navi)
                     {
-                        if (navig.x >= width-1)
+                        if (navig.x >= width - 1)
                         {
                             zvetsit = false;
-                        }                                                            
+                        }
                     }
-                    foreach(Point navig in navi)
+                    foreach (Point navig in navi)
                     {
                         if (zvetsit) { navig.x++; }
                     }
-                    
+
                 }
                 else if (navigation.Key == ConsoleKey.LeftArrow)
                 {
@@ -142,6 +162,17 @@ namespace Ships
                 else if (navigation.Key == ConsoleKey.Enter)
                 {
                     tryAdd = true;
+                }
+                else if (navigation.Key == ConsoleKey.R)
+                {
+                    if (rotate == 4)
+                    {
+                        rotate = 0;
+                    }
+                    else
+                    {
+                        rotate++;
+                    }
                 }
 
 
