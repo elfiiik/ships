@@ -12,7 +12,8 @@ namespace Ships
         private static int height = 20;
         /*public int naviX = 0;
         public int naviY = 0;*/
-        private List<Point> gameBoardMap = new List<Point>();
+        private List<Point> gameBoardMap1 = new List<Point>();
+        private List<Point> gameBoardMap2 = new List<Point>();
         public GameBoard()
         {
             bool radek1;
@@ -29,7 +30,13 @@ namespace Ships
                     {
                         radek1 = false;
                     }
-                    gameBoardMap.Add(new Point
+                    gameBoardMap1.Add(new Point
+                    {
+                        x = j,
+                        y = i,
+                        radek = radek1
+                    });
+                    gameBoardMap2.Add(new Point
                     {
                         x = j,
                         y = i,
@@ -39,42 +46,11 @@ namespace Ships
             }
         }
 
-        public List<Point> GetGameBoard()
-        {
-            return gameBoardMap;
-        }
-
-        private List<int> naviX = new List<int>();
-        public List<int> GetNaviX()
-        {
-            return naviX;
-        }
-
-        private List<int> naviY = new List<int>();
-        public List<int> GetNaviY()
-        {
-            return naviY;
-        }
-
-        private List<Point> navi= new List<Point>();
-        public List<Point> GetNavi()
-        {
-            return navi;
-        }
-
-        private List<Ship> ship = new List<Ship>();
-        public List<Ship> Ships()
-        {
-            return ship;
-        }
-
-
 
         public void ShipRotate(string type,int rot)
         {
-            navi.Clear();
             switch(type)
-            {
+            {               
                 case "Torpedoborec":
                     switch (rot)
                     {
@@ -211,22 +187,987 @@ namespace Ships
                             break;
                     }
                     break;
+
+                case "Bitevni_lod":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 6
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 5
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 6,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 5,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Letadlova_lod":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 8
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 7
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 6
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 5
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 8,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 7,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 6,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 5,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Pristavaci_zakladna":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 3
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 3
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 0
+                            });
+                            break;
+                    }
+                    break;
+                case "Hydroplan":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Kriznik2":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Katamaran":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 2
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Lehka_bitevni_lod":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 0
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 1
+                            });
+                            break;
+                    }
+                    break;
+
+                case "Letadlova_lod2":
+                    switch (rot)
+                    {
+                        case 1:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 2,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 1,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 0,
+                                y = 4
+                            });
+
+                            break;
+                        case 2:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 5
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 6
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 7
+                            });
+                            break;
+                        case 3:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 5,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 6,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 7,
+                                y = 3
+                            });
+                            break;
+                        case 4:
+                            GetNavi().Clear();
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 3
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 4,
+                                y = 4
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 2
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 1
+                            });
+                            GetNavi().Add(new Point
+                            {
+                                x = 3,
+                                y = 0
+                            });
+                            break;
+                    }
+                    break;
             }
         }
 
+        public List<Point> GetGameBoard1()
+        {
+            return gameBoardMap1;
+        }
 
-        public void GameBoardShow(string shiptype)
+        public List<Point> GetGameBoard2()
+        {
+            return gameBoardMap2;
+        }
+
+
+        private List<int> naviX = new List<int>();
+        public List<int> GetNaviX()
+        {
+            return naviX;
+        }
+
+        private List<int> naviY = new List<int>();
+        public List<int> GetNaviY()
+        {
+            return naviY;
+        }
+
+        private List<Point> navi = new List<Point>();
+        public List<Point> GetNavi()
+        {
+            return navi;
+        }
+
+        private List<Ship> ship = new List<Ship>();
+        public List<Ship> Ships()
+        {
+            return ship;
+        }
+
+
+        public void GameBoardShow1(string shiptype)
         {
             //Vypisování GameBoard a navigace po ní
             bool hmm = true;
-            int rotate = 0;
+            int rotate = 1;
+
             while (hmm)
             {
                 /*foreach (Point bod in navi)
                 {
                     Console.WriteLine($"bod x{bod.x} y{bod.y}");
                 }*/
-                Console.WriteLine(rotate);
                 bool tryAdd = false;
                 bool zvetsit = true;
                 ConsoleKeyInfo navigation = Console.ReadKey();
@@ -310,7 +1251,7 @@ namespace Ships
                 List<int> addY = new List<int>();
                 addX.Clear();
                 addY.Clear();
-                foreach (Point point in gameBoardMap)
+                foreach (Point point in gameBoardMap1)
                 {
                     foreach (Point navigace in navi)
                     {
@@ -335,7 +1276,7 @@ namespace Ships
 
                     for(int j=0; j<addX.Count();j++)
                     {
-                        if (addX[j] == gameBoardMap[i].x && addY[j]== gameBoardMap[i].y)
+                        if (addX[j] == gameBoardMap1[i].x && addY[j]== gameBoardMap1[i].y)
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.Write("*");
@@ -343,7 +1284,7 @@ namespace Ships
                         }
                     }
                         
-                    if (addelse && gameBoardMap[i].ship)
+                    if (addelse && gameBoardMap1[i].ship)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write("*");
@@ -352,13 +1293,159 @@ namespace Ships
                     {
                         Console.Write("*");
                     }
-                    if (gameBoardMap[i].radek)
+                    if (gameBoardMap1[i].radek)
                     {
                         Console.WriteLine();
                     }
                     Console.ResetColor();
                 }
             }         
+        }
+
+        public void GameBoardShow2(string shiptype)
+        {
+            //Vypisování GameBoard a navigace po ní
+            bool hmm = true;
+            int rotate = 1;
+
+            while (hmm)
+            {
+                /*foreach (Point bod in navi)
+                {
+                    Console.WriteLine($"bod x{bod.x} y{bod.y}");
+                }*/
+                bool tryAdd = false;
+                bool zvetsit = true;
+                ConsoleKeyInfo navigation = Console.ReadKey();
+                if (navigation.Key == ConsoleKey.RightArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.x >= width - 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.x++; }
+                    }
+
+                }
+                else if (navigation.Key == ConsoleKey.LeftArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.x < 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.x--; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.UpArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.y < 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.y--; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.DownArrow)
+                {
+                    foreach (Point navig in navi)
+                    {
+                        if (navig.y >= height - 1)
+                        {
+                            zvetsit = false;
+                        }
+                    }
+                    foreach (Point navig in navi)
+                    {
+                        if (zvetsit) { navig.y++; }
+                    }
+                }
+                else if (navigation.Key == ConsoleKey.Enter)
+                {
+                    tryAdd = true;
+                }
+                else if (navigation.Key == ConsoleKey.R)
+                {
+                    rotate++;
+                    if (rotate == 5)
+                    {
+                        rotate = 1;
+                    }
+
+                    ShipRotate(shiptype, rotate);
+                }
+
+
+                Console.Clear();
+
+
+                List<int> addX = new List<int>();
+                List<int> addY = new List<int>();
+                addX.Clear();
+                addY.Clear();
+                foreach (Point point in gameBoardMap2)
+                {
+                    foreach (Point navigace in navi)
+                    {
+                        if (point.x == navigace.x && point.y == navigace.y)
+                        {
+                            addX.Add(navigace.x);
+                            addY.Add(navigace.y);
+                        }
+
+                    }
+
+                }
+
+                for (int i = 0; i < width * height; i++)
+                {
+                    if (tryAdd)
+                    {
+                        hmm = false;
+                    }
+
+                    bool addelse = true;
+
+                    for (int j = 0; j < addX.Count(); j++)
+                    {
+                        if (addX[j] == gameBoardMap2[i].x && addY[j] == gameBoardMap2[i].y)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("*");
+                            addelse = false;
+                        }
+                    }
+
+                    if (addelse && gameBoardMap2[i].ship)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("*");
+                    }
+                    else if (addelse)
+                    {
+                        Console.Write("*");
+                    }
+                    if (gameBoardMap2[i].radek)
+                    {
+                        Console.WriteLine();
+                    }
+                    Console.ResetColor();
+                }
+            }
         }
 
 

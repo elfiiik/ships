@@ -135,12 +135,13 @@ namespace Ships
 
 
 
-        public void MenuGenerate()
+        public void MenuGenerate(int player)
         {
-            
+
             List<Ship> gameShips = gameboard.Ships();
             List<int> naviX = gameboard.GetNaviX();
             List<int> naviY = gameboard.GetNaviY();
+
 
             int ponorky = 3;
             int ponorkyCount = 3;
@@ -167,15 +168,14 @@ namespace Ships
             int letadlovelode2 = 1;
             int letadlovelode2Count = 1;
 
-            int pocetlodi = ponorkyCount + torpedoborce + krizniky + bitevnilode + letadlovelode + pristavacizakladny + hydroplany + krizniky2 + tezkekrizniky + katamarany + lehkebitevnilode
-                + letadlovelode2;
+            int pocetlodi = ponorkyCount + torpedoborceCount + kriznikyCount + bitevnilodeCount + letadlovelodeCount + pristavacizakladnyCount + hydroplanyCount + krizniky2Count +
+                        tezkekriznikyCount + katamaranyCount + lehkebitevnilodeCount + letadlovelode2Count;
 
             while (pocetlodi > 0)
             {
+                pocetlodi = ponorkyCount + torpedoborceCount + kriznikyCount + bitevnilodeCount + letadlovelodeCount + pristavacizakladnyCount + hydroplanyCount + krizniky2Count +
+                        tezkekriznikyCount + katamaranyCount + lehkebitevnilodeCount + letadlovelode2Count;
                 bool add = true;
-                pocetlodi = ponorkyCount + torpedoborceCount + kriznikyCount + bitevnilodeCount;
-
-                Console.WriteLine(pocetlodi);
                 int selectedMenuIndex = MenuCreate();
                 if (selectedMenuIndex == 100)
                 {

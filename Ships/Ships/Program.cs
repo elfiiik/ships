@@ -15,7 +15,8 @@ namespace Ships
             Menu menu = new Menu();
             GameBoard gameboard = new GameBoard();
 
-
+            Console.WriteLine("Player 1:");
+            Console.ReadLine();
             menu.MenuGenerate();
 
             //gameboard.GameBoardShow();
