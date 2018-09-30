@@ -206,30 +206,30 @@ namespace Ships
             List<int> naviY = gameboard.GetNaviY();
 
 
-            int ponorky = 1;
-            int ponorkyCount = 1;
-            int torpedoborce = 1;
-            int torpedoborceCount = 1;
-            int krizniky = 1;
-            int kriznikyCount = 1;
-            int bitevnilode = 0;
-            int bitevnilodeCount = 0;
-            int letadlovelode = 0;
-            int letadlovelodeCount = 0;
-            int pristavacizakladny = 0;
-            int pristavacizakladnyCount = 0;
-            int hydroplany =0;
-            int hydroplanyCount = 0;
-            int krizniky2 = 0;
-            int krizniky2Count = 0;
-            int tezkekrizniky = 0;
-            int tezkekriznikyCount = 0;
-            int katamarany = 0;
-            int katamaranyCount = 0;
-            int lehkebitevnilode = 0;
-            int lehkebitevnilodeCount = 0;
-            int letadlovelode2 = 0;
-            int letadlovelode2Count = 0;
+            int ponorky = 2;
+            int ponorkyCount = 2;
+            int torpedoborce = 2;
+            int torpedoborceCount = 2;
+            int krizniky = 2;
+            int kriznikyCount = 2;
+            int bitevnilode = 2;
+            int bitevnilodeCount = 2;
+            int letadlovelode = 1;
+            int letadlovelodeCount = 1;
+            int pristavacizakladny = 1;
+            int pristavacizakladnyCount = 1;
+            int hydroplany =1;
+            int hydroplanyCount = 1;
+            int krizniky2 = 1;
+            int krizniky2Count = 1;
+            int tezkekrizniky = 1;
+            int tezkekriznikyCount = 1;
+            int katamarany = 1;
+            int katamaranyCount = 1;
+            int lehkebitevnilode = 1;
+            int lehkebitevnilodeCount = 1;
+            int letadlovelode2 = 1;
+            int letadlovelode2Count = 1;
 
             int pocetlodi = ponorkyCount + torpedoborceCount + kriznikyCount + bitevnilodeCount + letadlovelodeCount + pristavacizakladnyCount + hydroplanyCount + krizniky2Count +
                         tezkekriznikyCount + katamaranyCount + lehkebitevnilodeCount + letadlovelode2Count;

@@ -1463,9 +1463,29 @@ namespace Ships
             bool zasah = false;
             bool kill = false;
             bool missed = false;
+            bool stop1 = false;
+            bool stop2 = false;
             while (cykl)
             {
-                if (Ships1().Count() < 1 || Ships2().Count() < 1)
+                foreach (Ship lod1 in Ships1())
+                {
+                    if (lod1.hp < 1)
+                    {
+                        stop1 = true;
+                    }
+                    else { stop1 = false; }
+                }
+
+                foreach (Ship lod2 in Ships2())
+                {
+                    if (lod2.hp < 1)
+                    {
+                        stop2 = true;
+                    }
+                    else { stop2 = false; }
+                }
+
+                if (stop1 || stop2)
                 {
                     cykl = false;
                     break;
